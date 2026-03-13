@@ -1,15 +1,24 @@
 const express = require("express");
 const cors = require("cors");
+const connectDB = require("./config/db");
 
 const app = express();
 
+// Connect to MongoDB
+connectDB();
+
+// Middleware
 app.use(cors());
 app.use(express.json());
 
-app.get("/", (req,res)=>{
+// Test API
+app.get("/", (req, res) => {
     res.send("Voice of the People API Running");
 });
 
-app.listen(5000, ()=>{
-    console.log("Server running on port 5000");
+// Server
+const PORT = 5000;
+
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
 });
